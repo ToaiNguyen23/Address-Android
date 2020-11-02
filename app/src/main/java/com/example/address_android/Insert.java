@@ -2,11 +2,13 @@ package com.example.address_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,8 +26,12 @@ public class Insert extends AppCompatActivity implements AdapterView.OnItemSelec
     Spinner spncountry;
     ArrayAdapter<String> adapter;
     Address a = new Address();
-    EditText zipcode;
+    EditText code;
+    EditText name;
+    EditText address;
+    Button btnthem;
     boolean rdbchecked = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +41,21 @@ public class Insert extends AppCompatActivity implements AdapterView.OnItemSelec
         spncountry = (Spinner) findViewById(R.id.spinnercountry);
 
         RadioGroup type  = (RadioGroup)findViewById(R.id.type);
-        zipcode = (EditText) findViewById(R.id.zipcode);
+        code = (EditText) findViewById(R.id.zipcode);
+        name = (EditText) findViewById(R.id.name);
+        address = (EditText) findViewById(R.id.addr);
 
+        btnthem = (Button) findViewById(R.id.btnthem);
+
+        rdbchecked = false;
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,arr);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spncountry.setAdapter(adapter);
         spncountry.setOnItemSelectedListener(this);
-
     }
-    public void onClick(View view) {
+
+
+    public void onClickRdb(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
@@ -69,19 +81,39 @@ public class Insert extends AppCompatActivity implements AdapterView.OnItemSelec
         }
 
     }
-    
+    public void checktecked(){
+
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (rdbchecked){
-            zipcode.setText(zip2[position]);
+            code.setText(zip2[position]);
             Toast.makeText(getApplicationContext(), "Selected User: "+zip2[position] ,Toast.LENGTH_SHORT).show();
         }else{
-            zipcode.setText(zip[position]);
+            code.setText(zip[position]);
             Toast.makeText(getApplicationContext(), "Selected User: "+zip[position] ,Toast.LENGTH_SHORT).show();
         }
 
 
 
+    }
+    public void onClickThem(View view){
+
+
+
+        String names  = name.getText().toString();
+        String addresss = address.getText().toString();
+        String zipcodes = code.getText().toString();
+
+        Intent intent = new Intent();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("name", names);
+        bundle.putString("address", addresss);
+        bundle.putString("zip", zipcodes);
+        intent.putExtra("DATA",bundle);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override

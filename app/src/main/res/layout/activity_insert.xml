@@ -54,7 +54,8 @@
                 <RadioGroup
                     android:id="@+id/type"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
 
                     <RadioButton
@@ -63,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:text="Trong nuoc"
-                        android:onClick="onClick"/>/>
+                        android:onClick="onClickRdb"/>/>
 
                     <RadioButton
                         android:id="@+id/rdbngoainuoc"
@@ -71,7 +72,7 @@
                         android:layout_height="wrap_content"
 
                         android:text="Ngoai nuoc"
-                        android:onClick="onClick"/>/>
+                        android:onClick="onClickRdb"/>/>
                 </RadioGroup>
 
         </TableRow>
@@ -106,13 +107,23 @@
             android:layout_height="wrap_content"
             android:ems="10" />
         </TableRow>
-        <Button
-            android:id="@+id/save"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="250dp"
-            android:layout_marginTop="30sp"
-            android:text="Insert" />
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/insert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insert"
+                android:onClick="onClickThem"/>
+            <Button
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit" />
+        </LinearLayout>
+
     </TableLayout>
 
 </RelativeLayout>
