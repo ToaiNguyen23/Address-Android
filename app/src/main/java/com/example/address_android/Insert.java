@@ -1,5 +1,6 @@
 package com.example.address_android;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -31,7 +32,9 @@ public class Insert extends AppCompatActivity implements AdapterView.OnItemSelec
     EditText address;
     Button btnthem;
     boolean rdbchecked = false;
-
+    String index1="";
+    String index2="";
+    String index3="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class Insert extends AppCompatActivity implements AdapterView.OnItemSelec
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spncountry.setAdapter(adapter);
         spncountry.setOnItemSelectedListener(this);
+
+
     }
 
 
@@ -81,9 +86,7 @@ public class Insert extends AppCompatActivity implements AdapterView.OnItemSelec
         }
 
     }
-    public void checktecked(){
 
-    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (rdbchecked){
@@ -98,8 +101,6 @@ public class Insert extends AppCompatActivity implements AdapterView.OnItemSelec
 
     }
     public void onClickThem(View view){
-
-
 
         String names  = name.getText().toString();
         String addresss = address.getText().toString();
