@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==2 && resultCode == Insert.RESULT_OK)
         {
+            list.setAdapter(adapter);
             Address a = new Address();
 
             Bundle bundle = data.getBundleExtra("DATA");
@@ -101,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
 
 
-            String s = index1 + index2 + index3;
+            String s2 = index1 + index2 + index3;
 
-            Toast.makeText(getApplicationContext(), s ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), s2 ,Toast.LENGTH_SHORT).show();
         }
     }
     class AddressAdapter extends ArrayAdapter<Address> {
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     private AdapterView.OnItemLongClickListener onLongListClick = new AdapterView.OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            /*AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("Thong Bao")
                     .setMessage("Ban co muon Xoa?")
                     .setCancelable(false)
@@ -183,7 +184,10 @@ public class MainActivity extends AppCompatActivity {
                     });
             //Creating dialog box
             AlertDialog dialog  = builder.create();
-            dialog.show();
+            dialog.show();*/
+
+            addresseslist.remove(position);
+            adapter.notifyDataSetChanged();
 
             return false;
         }
